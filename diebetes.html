@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Vidhyut's Diebetes App</title>
+        <h1 style="text-align: center; color: yellow;">Vidhyut's Diebetes App</h1>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <style src="diebetes.css"></style   >
+        <script src="diebetes.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script>
+            function generateInsulinGraph() {
+                const   xValues = [localStorage.getItem("insulinCount")];
+            const yValues = [localStorage.getItem("insulinValues")];
+            const barColors = ["red", "green", "blue", "orange", "brown"];
+            new Chart("insulinChart", {
+                type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {} 
+        });
+            }
+        </script>
+    </head>
+
+    <body onload="startUp()">
+
+        <p1>Insulin Record</p1> <br><br>
+        <input type="number"  id="insulinno" placeholder="Enter amount of insulin put here"  id="insulinsubmit">
+        <input type="datetime-local"  id="insulintime" placeholder="Date and Time of dose">
+        <button type="submit" onclick="submitInsulin()" height="50" width="50"><p3>Submit</p3></button>
+        <button type="submit" onclick="generateInsulinGraph()"><p3>Generate Insulin Graph</p3></button> 
+        <canvas id="insulinChart" style="width:100%;max-width:700px"></canvas>
+        <hr>
+        <h1>Personolize your profie</h1>
+        <br><br>
+        <input type="number" placeholder="Body Weight Here in kg" id="bodyweight" class="datatext"></input>
+        <br><br>
+        <input type="number" placeholder="Age here" id="age123"></input>
+        <br><br>
+        <input type="number" placeholder="Basal Dosed per day" id="dosedBasal"></input>
+        <p2>(leave blank for reccomendation)</p2>
+        <br><br>
+        <button type="submit" onclick="submitData()"><p3>Submit</p3></button>
+        <br><br>
+        <p1>YOUR DATA</p1>
+        <br><br>
+        <p1><b>How many units of Bolus you have left: </b></p1><p1 id="rebolus">You have to personolize your account first!</p1> <br>
+        <p1><b>How many units of Basal you have left: </b></p1><p1 id="rebasal">You have to personolize your account first!</p1>
+
+
+        
+
+    </body>
+</html>
